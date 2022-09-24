@@ -84,17 +84,18 @@ app.get("/upload-courses-file.html", async (req, res) => {
 });
 
 app.get('/courses-files', async (req, res) => {
-   const CourseFiles = await CourseFile.find({}).select(["name", "description", "content", "-_id"]);
-   res.send(JSON.stringify(CourseFiles))
+   const courseFiles = await CourseFile.find({}).select(["name", "description", "content", "-_id"]);
+   res.send(JSON.stringify(courseFiles))
 });
 
 app.get('/latest-courses-file', async (req, res) => {
-   const CourseFiles = await CourseFile.find({}).select(["name", "description", "content", "-_id"]);
-   res.send(JSON.stringify(CourseFiles[CourseFiles.length - 1]))
+   const coursesFiles = await CourseFile.find({}).select(["name", "description", "content", "-_id"]);
+   if (coursesFiles.length) res.send(JSON.stringify(coursesFiles[coursesFiles.length - 1]))
+   if (!coursesFiles.length) res.send(JSON.stringify({ "content": "" }))
 });
 
 app.post('/courses-files', async (req, res) => {
-   const { name } = req.body;
+   const { name, content, description } = req.body;
    const isNameDup = await CourseFile.findOne({ "name": name });
    const errors = [];
    if (isNameDup) errors.push({ "error": `اسم ملف مكرر : ${name}` })
@@ -102,7 +103,7 @@ app.post('/courses-files', async (req, res) => {
    if (errors.length) res.status(400).send({ errors })
 
    if (!isNameDup) {
-      const isCreated = await CourseFile.create(req.body);
+      const isCreated = await CourseFile.create({ name, "content": content.trim(), description });
       if (isCreated) res.send({ "message": `تمت إضافة ملف  #${name} بنجاح` })
    }
 });
