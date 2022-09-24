@@ -1,0 +1,22 @@
+{
+  "name": "upload-courses-file",
+  "version": "1.0.0",
+  "description": "upload-courses-file for https://htireg.blogspot.com",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon node app.js"
+  },
+  "author": "mahmoudElmaandi",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
