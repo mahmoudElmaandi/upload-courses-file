@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 app.get('/login', async (req, res) => {
    const isUserAuth = await isAuth(req)
    if (!isUserAuth) res.sendFile(path.join(__dirname, '/web-app/public/login.html'))
-   if (isUserAuth) res.redirect('tokens-report.html')
+   if (isUserAuth) res.redirect('upload-courses-file.html')
 });
 
 app.get('/change-password', async (req, res) => {
