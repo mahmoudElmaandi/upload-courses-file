@@ -20,6 +20,7 @@ const CourseFileSchema = new mongoose.Schema({
     term: {
         type: String,
         required: true,
+        enum: ['سبتمبر-يناير', 'يناير-مايو', 'مايو-أغسطس']
     },
     createdAt: {
         type: Date,

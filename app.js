@@ -95,16 +95,29 @@ app.get('/latest-courses-file', async (req, res) => {
 });
 
 app.post('/courses-files', async (req, res) => {
-   const { name, content, description } = req.body;
+   const { name, content, description, department, term } = req.body;
    const isNameDup = await CourseFile.findOne({ "name": name });
-   const errors = [];
+   let errors = [];
    if (isNameDup) errors.push({ "error": `اسم ملف مكرر : ${name}` })
+
+   if (!name || !content || !description || !department || !term) {
+      errors.push({ "error": `البيانات ليست كاملة` })
+   };
 
    if (errors.length) res.status(400).send({ errors })
 
    if (!isNameDup) {
-      const isCreated = await CourseFile.create({ name, "content": content.trim(), description });
-      if (isCreated) res.send({ "message": `تمت إضافة ملف  #${name} بنجاح` })
+      try {
+         const isCreated = await CourseFile.create({ "name": name.trim(), "content": content.trim(), description, department, term });
+         if (isCreated) res.send({ "message": `تمت إضافة ملف  #${name} بنجاح` });
+
+      } catch (error) {
+         errors = []
+         if (error.message.includes("courseFile validation failed")) {
+            errors.push({ "error": `تأكد من اختيار قيم صحيحة للفصل الدراسي` })
+         }
+         res.status(400).send({ errors })
+      }
    }
 });
 

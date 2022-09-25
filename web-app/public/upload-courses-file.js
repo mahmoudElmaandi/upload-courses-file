@@ -38,6 +38,8 @@ function createSelect(devices) {
         option.setAttribute('name', coursesFile.name);
         option.setAttribute('description', coursesFile.description);
         option.setAttribute('content', coursesFile.content);
+        option.setAttribute('department', coursesFile.department);
+        option.setAttribute('term', coursesFile.term);
         option.innerText = coursesFile.name
         select.append(option)
     })
@@ -134,14 +136,14 @@ function collapse() {
     }
 };
 
-async function sendCoursesFile(name, description, content) {
+async function sendCoursesFile(name, description, content, department, term) {
     const response = await fetch(`${window.location.origin}/courses-files`, {
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
         method: "POST",
-        body: JSON.stringify({ "name": name.trim(), "description": description, "content": content })
+        body: JSON.stringify({ "name": name.trim(), "description": description, "content": content, department, term })
     });
 
     const data = await response.json();
@@ -160,11 +162,16 @@ async function sendCoursesFile(name, description, content) {
 async function addCourseFile() {
     const cInputName = document.querySelector('input#cInputName').value;
     let cInputDes = document.querySelector('input#cInputDes').value;
-    if (!(cInputName.replace("CS-", ""))) showAlert(`Name can't be empty`, addingDAlerts);
-    if (!cInputDes) showAlert(`Description can't be empty`, addingDAlerts);
+    let cInputDep = document.querySelector('input#dep').value;
+    let cInputterm = document.querySelector('input#term').value;
+
+    if (!(cInputName.replace("CS-", ""))) showAlert(`لا يمكن ترك الاسم فارغا`, addingDAlerts);
+    if (!cInputDes) showAlert(`لا يمكن ترك الوصف فارغا`, addingDAlerts);
+    if (!cInputDep) showAlert(`لا يمكن ترك القسم فارغا`, addingDAlerts);
+    if (!cInputterm) showAlert(`لا يمكن ترك الفصل الدراسي فارغا`, addingDAlerts);
 
     if (!csvCoursesFileInput.files.length) {
-        showAlert(`Please choose a csv file first`, addingDAlerts);
+        showAlert(`يرجى رفع ملف مواد`, addingDAlerts);
         return
     };
 
@@ -172,7 +179,7 @@ async function addCourseFile() {
     reader.readAsText(csvCoursesFileInput.files[0]);
     reader.onload = async function (e) {
         const courseFileInfo = e.target.result.trim();
-        await sendCoursesFile(cInputName, cInputDes, courseFileInfo)
+        await sendCoursesFile(cInputName, cInputDes, courseFileInfo, cInputDep, cInputterm)
     }
 };
 
@@ -203,10 +210,12 @@ function showCourseInfoFile() {
     const name = selectedOption.getAttribute('name');
     const description = selectedOption.getAttribute('description');
     let content = selectedOption.getAttribute('content');
+    let department = selectedOption.getAttribute('department');
+    let term = selectedOption.getAttribute('term');
 
-    console.log(selectedOption)
+    // console.log(selectedOption)
     content = content.replace(/\r\n/g, '<br>');
-    console.log(content)
+    // console.log(content)
     coursesFileInfoDiv.innerHTML = ""
     coursesFileInfoDiv.innerHTML =
 
@@ -214,6 +223,10 @@ function showCourseInfoFile() {
    <b> اسم الملف </b>: ${name}
     <br>
     <b> وصف الملف </b>: ${description}
+    <br>
+    <b> القسم</b>: ${department}
+    <br>
+    <b> الفصل الدراسي</b>: ${term}
     <br>
     <b> محتوى الملف </b>
     <br>
