@@ -84,12 +84,12 @@ app.get("/upload-courses-file.html", async (req, res) => {
 });
 
 app.get('/courses-files', async (req, res) => {
-   const courseFiles = await CourseFile.find({}).select(["name", "description", "content", "-_id"]);
+   const courseFiles = await CourseFile.find({}).select(["name", "description", "content", "department", "term", "createdAt", "-_id"]);
    res.send(JSON.stringify(courseFiles))
 });
 
 app.get('/latest-courses-file', async (req, res) => {
-   const coursesFiles = await CourseFile.find({}).select(["name", "description", "content", "createdAt", "-_id"]);
+   const coursesFiles = await CourseFile.find({}).select(["name", "description", "content", "department", "term", "createdAt", "-_id"]);
    if (coursesFiles.length) res.send(JSON.stringify(coursesFiles[coursesFiles.length - 1]))
    if (!coursesFiles.length) res.send(JSON.stringify({ "content": "" }))
 });
