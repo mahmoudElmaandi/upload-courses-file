@@ -13,6 +13,14 @@ const CourseFileSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    department: {
+        type: String,
+        required: true,
+    },
+    term: {
+        type: String,
+        required: true,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
