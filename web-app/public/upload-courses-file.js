@@ -166,7 +166,7 @@ async function addCourseFile() {
     let cInputterm = document.querySelector('input#term').value;
 
     if (!(cInputName.replace("CS-", ""))) showAlert(`لا يمكن ترك الاسم فارغا`, addingDAlerts);
-    if (!cInputDes) showAlert(`لا يمكن ترك الوصف فارغا`, addingDAlerts);
+    // if (!cInputDes) showAlert(`لا يمكن ترك الوصف فارغا`, addingDAlerts);
     if (!cInputDep) showAlert(`لا يمكن ترك القسم فارغا`, addingDAlerts);
     if (!cInputterm) showAlert(`لا يمكن ترك الفصل الدراسي فارغا`, addingDAlerts);
 
