@@ -100,6 +100,7 @@ app.get('/latest-courses-file', async (req, res) => {
       const targetFile = { filter, ...coursesFiles[coursesFiles.length - 1]["_doc"] }
       res.send(JSON.stringify(targetFile))
    }
+
    if (!coursesFiles.length) res.send(JSON.stringify({ "content": "" }))
 });
 
