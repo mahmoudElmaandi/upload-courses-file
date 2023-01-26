@@ -110,7 +110,7 @@ app.post('/courses-files', async (req, res) => {
    let errors = [];
    if (isNameDup) errors.push({ "error": `اسم ملف مكرر : ${name}` })
 
-   if (!name || !content || !description || !department || !term) {
+   if (!name || !content || !department || !term) {
       errors.push({ "error": `البيانات ليست كاملة` })
    };
 
