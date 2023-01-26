@@ -89,7 +89,13 @@ app.get('/courses-files', async (req, res) => {
 });
 
 app.get('/latest-courses-file', async (req, res) => {
-   const coursesFiles = await CourseFile.find({}).select(["name", "description", "content", "department", "term", "createdAt", "-_id"]);
+   const depFilterNames = {
+      "cs": "علوم حاسب",
+      "new-cs-1": "علوم حاسب لائحة جديدة سنة أولى"
+   };
+   let { filter } = req.query;
+   if (!filter) filter = "cs"
+   const coursesFiles = await CourseFile.find({ department: depFilterNames[filter] }).select(["name", "description", "content", "department", "term", "createdAt", "-_id"]);
    if (coursesFiles.length) res.send(JSON.stringify(coursesFiles[coursesFiles.length - 1]))
    if (!coursesFiles.length) res.send(JSON.stringify({ "content": "" }))
 });
