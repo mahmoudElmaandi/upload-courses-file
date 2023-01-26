@@ -96,7 +96,8 @@ app.get('/latest-courses-file', async (req, res) => {
    let { filter } = req.query;
    if (!filter) filter = "cs"
    const coursesFiles = await CourseFile.find({ department: depFilterNames[filter] }).select(["name", "description", "content", "department", "term", "createdAt", "-_id"]);
-   if (coursesFiles.length) res.send(JSON.stringify(coursesFiles[coursesFiles.length - 1]))
+   const targetFile = { filter, ...coursesFiles[coursesFiles.length - 1]["_doc"] }
+   if (coursesFiles.length) res.send(JSON.stringify(targetFile))
    if (!coursesFiles.length) res.send(JSON.stringify({ "content": "" }))
 });
 
