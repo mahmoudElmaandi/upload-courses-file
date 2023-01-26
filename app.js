@@ -91,7 +91,7 @@ app.get('/courses-files', async (req, res) => {
 app.get('/latest-courses-file', async (req, res) => {
    const depFilterNames = {
       "cs": "علوم حاسب",
-      "new-cs-1": "علوم حاسب لائحة جديدة سنة أولى"
+      "new-cs": "علوم حاسب لائحة جديدة"
    };
    let { filter } = req.query;
    if (!filter) filter = "cs"
