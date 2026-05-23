@@ -204,21 +204,22 @@ async function fetchCoursesFiles() {
     }
 };
 
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(str || ''));
+    return div.innerHTML;
+};
+
 function showCourseInfoFile() {
     const fileSelect = document.querySelector('select#select-file');
     const selectedOption = fileSelect.selectedOptions[0];
-    const name = selectedOption.getAttribute('name');
-    const description = selectedOption.getAttribute('description');
-    let content = selectedOption.getAttribute('content');
-    let department = selectedOption.getAttribute('department');
-    let term = selectedOption.getAttribute('term');
+    const name = escapeHtml(selectedOption.getAttribute('name'));
+    const description = escapeHtml(selectedOption.getAttribute('description'));
+    const content = escapeHtml(selectedOption.getAttribute('content')).replace(/\r\n|\n/g, '<br>');
+    const department = escapeHtml(selectedOption.getAttribute('department'));
+    const term = escapeHtml(selectedOption.getAttribute('term'));
 
-    // console.log(selectedOption)
-    content = content.replace(/\r\n/g, '<br>');
-    // console.log(content)
-    coursesFileInfoDiv.innerHTML = ""
     coursesFileInfoDiv.innerHTML =
-
         `
    <b> اسم الملف </b>: ${name}
     <br>
@@ -230,9 +231,7 @@ function showCourseInfoFile() {
     <br>
     <b> محتوى الملف </b>
     <br>
-    <p>
-    ${content}
-    </p>
+    <p>${content}</p>
     `
 };
 
@@ -285,10 +284,9 @@ async function deleteCoursesFile(delType) {
 };
 
 
-function logOut() {
-    document.cookie = "token=";
-    window.location.href = `${window.location.origin}/login`
-    window.location.assign(`${window.location.origin}/login`)
+async function logOut() {
+    await fetch(`${window.location.origin}/logout`, { method: "POST" });
+    window.location.assign(`${window.location.origin}/login`);
 };
 
 function hideHSec() {

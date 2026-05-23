@@ -10,10 +10,12 @@
   "author": "mahmoudElmaandi",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^5.12.2"
   },
   "devDependencies": {
