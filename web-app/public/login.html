@@ -21,7 +21,12 @@
         <form class="row g-1">
             <div class="col-6 col-sm-6">
                 <label for="password" class="visually-hidden">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="كلمة السر">
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="كلمة السر">
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                        <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                    </button>
+                </div>
             </div>
             <div class="col-6 col-sm-6">
                 <button type="button" id="login" class="btn btn-primary mb-3">تسجيل الدخول</button>

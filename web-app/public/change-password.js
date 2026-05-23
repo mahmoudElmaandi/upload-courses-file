@@ -1,3 +1,11 @@
+function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector('i');
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    icon.className = show ? 'bi bi-eye-slash' : 'bi bi-eye';
+};
+
 const changePasswordBtn = document.querySelector('button#changePasswordBtn');
 const form = document.querySelector('form');
 

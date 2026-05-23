@@ -1,5 +1,13 @@
 const loginBtn = document.querySelector('button#login');
 
+document.querySelector('#togglePassword').addEventListener('click', () => {
+    const input = document.querySelector('#password');
+    const icon = document.querySelector('#togglePasswordIcon');
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    icon.className = show ? 'bi bi-eye-slash' : 'bi bi-eye';
+});
+
 loginBtn.addEventListener('click', async () => {
     const password = document.querySelector('input#password').value;
     if (!password) return;
