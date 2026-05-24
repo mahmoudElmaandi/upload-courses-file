@@ -1,12 +1,94 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    margin: 10px;
-    font-size: 18px;
-    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     direction: rtl;
 }
 
 #loginSec {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+    text-align: center;
+}
+
+#loginSec h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+}
+
+#loginSec .lead {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+}
+
+#loginSec .form-control {
+    border-radius: 8px 0 0 8px;
+    border-color: #dee2e6;
+    font-size: 1rem;
+    padding: 12px 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#loginSec .form-control:focus {
+    border-color: #0f3460;
+    box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.15);
+}
+
+#loginSec .btn-outline-secondary {
+    border-radius: 0 8px 8px 0;
+    border-color: #dee2e6;
+    color: #6c757d;
+    padding: 12px 14px;
+    transition: background 0.2s, color 0.2s;
+}
+
+#loginSec .btn-outline-secondary:hover {
+    background: #f1f3f5;
+    color: #1a1a2e;
+}
+
+#loginSec #login {
+    background: #0f3460;
+    border: none;
+    border-radius: 8px;
+    padding: 13px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    margin-top: 8px;
+}
+
+#loginSec #login:hover {
+    background: #16213e;
+    box-shadow: 0 4px 16px rgba(15, 52, 96, 0.35);
+    transform: translateY(-1px);
+}
+
+#loginSec #login:active {
+    transform: translateY(0);
+}
+
+#alerts {
+    margin-top: 16px;
+}
+
+#alerts .alert {
+    border-radius: 8px;
+    font-size: 0.9rem;
 }
