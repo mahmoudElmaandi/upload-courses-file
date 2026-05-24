@@ -54,7 +54,6 @@ body {
     gap: 10px;
     font-size: 0.85rem;
     color: #495057;
-    flex-direction: row-reverse;
 }
 
 .context-item i {
@@ -77,7 +76,7 @@ body {
 }
 
 #loginSec .form-control {
-    border-radius: 8px 0 0 8px;
+    border-radius: 0 8px 8px 0;
     border-color: #dee2e6;
     font-size: 1rem;
     padding: 12px 16px;
@@ -90,7 +89,7 @@ body {
 }
 
 #loginSec .btn-outline-secondary {
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px 0 0 8px;
     border-color: #dee2e6;
     color: #6c757d;
     padding: 12px 14px;
