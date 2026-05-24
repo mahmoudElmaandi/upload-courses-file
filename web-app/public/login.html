@@ -15,8 +15,28 @@
 <body>
 
     <div class="jumbotron" id="loginSec">
-        <h1 class="display-5">رفع ملفات المواد </h1>
-        <p class="lead">يرجى إدخال كلمة السر للمتابعة</p>
+
+        <div id="appIcon">
+            <i class="bi bi-calendar2-week"></i>
+        </div>
+
+        <h1 class="display-5">لوحة تحكم الجداول</h1>
+        <p class="lead">منصة رفع ملفات المواد لأداة توليد الجداول الدراسية</p>
+
+        <div id="contextInfo">
+            <div class="context-item">
+                <i class="bi bi-upload"></i>
+                <span>رفع ملفات المواد بصيغة CSV</span>
+            </div>
+            <div class="context-item">
+                <i class="bi bi-people"></i>
+                <span>تحديث بيانات المحاضرين والمعيدين</span>
+            </div>
+            <div class="context-item">
+                <i class="bi bi-grid-3x3-gap"></i>
+                <span>تغذية أداة توليد الجداول الدراسية</span>
+            </div>
+        </div>
 
         <form class="row g-2">
             <div class="col-12">
@@ -33,9 +53,7 @@
             </div>
         </form>
 
-        <div id="alerts">
-
-        </div>
+        <div id="alerts"></div>
     </div>
 
     <script src="login.js"></script>
